@@ -1,0 +1,19 @@
+Hello.
+Recently i took asm again, i needed one example to use graphics on linux and assembly. i found yours, thanks.
+On file x11hello.asm, there is one error, this:
+.break:
+mov   rdi, qword[d]
+call  XCloseDisplay
+
+must be changed to:
+
+.break:
+mov   rsp, rbp
+pop   rbp
+mov   rdi, qword[d]
+call  XCloseDisplay
+
+Whitout this lines, an 'Segment fault' occurs.
+
+I didn,t found your mail to tell it to you.
+
